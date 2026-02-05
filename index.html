@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Colorful Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌈</text></svg>">
+</head>
+<body>
+    <!-- Background Gradient -->
+    <div class="background"></div>
+    
+    <!-- Floating Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-check-circle rainbow-text"></i>
+                <h1 class="gradient-text">Todo<span class="highlight">List</span></h1>
+            </div>
+            <p class="tagline">Organize your day with colorful efficiency ✨</p>
+        </header>
+
+        <!-- Main App -->
+        <main class="app">
+            <!-- Add Task Card -->
+            <div class="card add-card glow">
+                <div class="card-header">
+                    <h2><i class="fas fa-magic"></i> Add New Task</h2>
+                    <div class="header-decoration">
+                        <span class="dot dot-1"></span>
+                        <span class="dot dot-2"></span>
+                        <span class="dot dot-3"></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form id="task-form">
+                        <div class="input-group">
+                            <i class="fas fa-feather-alt input-icon"></i>
+                            <input type="text" 
+                                   id="task-input" 
+                                   placeholder="What magical task awaits you today?" 
+                                   autofocus
+                                   required>
+                        </div>
+                        <button type="submit" class="btn-add">
+                            <i class="fas fa-sparkles"></i>
+                            <span>Add Task</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Statistics Card -->
+            <div class="card stats-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-pie"></i> Progress Dashboard</h2>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid">
+                        <div class="stat total-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="total-tasks">0</span>
+                                <span class="stat-label">Total Tasks</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat done-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="done-tasks">0</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat pending-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="pending-tasks">0</span>
+                                <span class="stat-label">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Completion Progress</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task List Card -->
+            <div class="card tasks-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-list-alt"></i> Your TASK List</h2>
+                    <div class="task-actions">
+                        <button class="btn-filter active" data-filter="all">All</button>
+                        <button class="btn-filter" data-filter="pending">Pending</button>
+                        <button class="btn-filter" data-filter="completed">Completed</button>
+                        <button class="btn-clear" id="clear-done">
+                            <i class="fas fa-broom"></i> Clear Done
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <!-- Search -->
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" 
+                               id="search-input" 
+                               placeholder="Search your tasks...">
+                    </div>
+                    
+                    <!-- Tasks Container -->
+                    <div class="tasks-container" id="tasks-container">
+                        <!-- Empty State -->
+                        <div id="empty-state" class="empty-state">
+                            <div class="empty-illustration">
+                                <i class="fas fa-cloud-sun rainbow-icon"></i>
+                            </div>
+                            <h3>No tasks yet!</h3>
+                            <p>Start by adding your first magical task above ✨</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Card -->
+            <div class="card tips-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-lightbulb"></i> Pro Tips</h2>
+                </div>
+                <div class="card-body">
+                    <div class="tips-grid">
+                        <div class="tip">
+                            <div class="tip-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <p>Click checkbox to mark complete</p>
+                        </div>
+                        <div class="tip">
+                            <div class="tip-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <p>Click task text to edit</p>
+                        </div>
+                        <div class="tip">
+                            <div class="tip-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                            <p>Click X button to delete</p>
+                        </div>
+                        <div class="tip">
+                            <div class="tip-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <p>Data saves automatically</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with <i class="fas fa-heart heart-beat"></i> using HTML, CSS & JavaScript</p>
+            <p class="footer-note">Your tasks are saved locally in your browser </p>
+        </footer>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Task</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="edit-input" placeholder="Edit your task...">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
